@@ -5,6 +5,7 @@ const FeeToSetter = artifacts.require("FeeToSetter");
 const FeeTo = artifacts.require("FeeTo");
 
 const OwnerAddress = process.env.OWNER_ADDRESS;
+const FeeToSetterVestingEnd = process.env.FEE_TO_SETTER_VESTING_END; // Unix timestamp (must be in the future)
 
 module.exports = async function (deployer, network, accounts) {
     console.log("Deploying to network: " + network);
@@ -18,7 +19,7 @@ module.exports = async function (deployer, network, accounts) {
 
     await deployer.deploy(FeeToSetter,
         UniswapV2Factory.address, // factory_
-        1701336600, // vestingEnd_ (must be in the future)
+        FeeToSetterVestingEnd, // vestingEnd_ (must be in the future)
         OwnerAddress, // owner_
         FeeTo.address, // feeTo_
     );
