@@ -24,5 +24,6 @@ module.exports = async function (deployer, network, accounts) {
         FeeTo.address, // feeTo_
     );
 
-    await UniswapV2Factory.setFeeToSetter(FeeToSetter.address); // _feeToSetter
+    const uniswapV2Factory = await UniswapV2Factory.deployed();
+    await uniswapV2Factory.setFeeToSetter(FeeToSetter.address); // _feeToSetter
 };
